@@ -1,6 +1,10 @@
-// aqui exportaras las funciones que necesites
+import { signUp } from "./firebaseAuth.js";
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};
+const signUpForm = document.getElementById("signUpForm");
+
+signUpForm.addEventListener("submit", (e) => {
+    const emailSignUp = document.getElementById("emailSignUp").value;
+    const passwordSignUp = document.getElementById("passwordSignUp").value;
+    e.preventDefault();
+    signUp(emailSignUp, passwordSignUp)
+});

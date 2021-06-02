@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" href="registro.css" />
+  <title>PetSpace</title>
 </head>
+
 <body>
-  <script type="module" src="main.js"></script>
+  <header>
+    <img src="img/Logo.png" alt="">
+    <div id="description">
+      <p>Únete a ésta gran comunidad dedicada a los amantes de las mascotas.</p>
+    </div>
+  </header>
+
+  <div id="signUpForm" class="signUpForm">
+    <form>
+      <h1>Crear cuenta</h1>
+      <label for="name">Nombre o apodo</label>
+      <input id="name" type="text" placeholder="Ingresar nombre de usuario" required>
+
+      <label for="email">Correo electrónico</label>
+      <input id="emailSignUp" type="email" placeholder="Ingresar correo" required>
+
+      <label for="password">Contraseña</label>
+      <input id="passwordSignUp" type="password" placeholder="Crear contraseña" minlength="8" required><br>
+
+      <button id="record" type="submit">Registrarme</button><br>
+
+      <div class="question">
+        <a href="#">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+
+        <h3>o</h3>
+        <button type="submit">Ingresa con Google<img src="img/GoogleIcon.png"></button>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDPAJJXty5jxXp4Zppqh-XOQltl3H1H9Yk",
+      authDomain: "red-social-4f643.firebaseapp.com",
+      projectId: "red-social-4f643",
+      storageBucket: "red-social-4f643.appspot.com",
+      messagingSenderId: "332128175795",
+      appId: "1:332128175795:web:e8b9a253a739c88be612c6"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+  </script>
+  <script type="module" src="lib/firebaseAuth.js"></script>
+  <script type="module" src="lib/index.js"></script>
 </body>
+
 </html>
