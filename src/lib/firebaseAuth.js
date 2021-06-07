@@ -2,11 +2,12 @@ export const signUp = (email, password) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
+    .then((userInfo) => {
+      return userInfo.user;
     })
+    /* console.log(userInfo) */
+
     .catch((error) => {
-      console.log("error", error);
+      return error.message
     });
-    console.log("se ejecuta primero")
 };

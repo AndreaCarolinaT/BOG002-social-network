@@ -8,3 +8,17 @@ signUpForm.addEventListener("submit", (e) => {
     e.preventDefault();
     signUp(emailSignUp, passwordSignUp)
 });
+
+//google login 
+const googleBtn = document.getElementById("googleLogin");
+googleBtn.addEventListener("click", () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            return result
+        })
+        .catch((error) => {
+            return error.message
+        })
+})
+
