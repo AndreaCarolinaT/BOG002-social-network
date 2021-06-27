@@ -1,35 +1,35 @@
-import { loginGoogle } from "../lib/firebaseAuth.js"
+import { googleAuth, verifyUser } from "../lib/firebaseAuth.js"
 import { Signup } from "../views/Signup.js"
 import { Signin } from "../views/Signin.js"
 import { Posts } from "../views/Posts.js"
 import { signUpData, signInData } from "../main.js";
-
-const description = document.getElementById("description");
+import { home } from "../views/home.js";
 
 export const router = (route) => {
   const content = document.getElementById('root');
   content.innerHTML = "";
   console.log(route);
 
+  verifyUser()
   switch (route) {
-    case "http://localhost:5000":
-      content.appendChild(description);
-      break;
-    case "http://localhost:5000/#registro":
-      description.style.display = "none";
+    case "#registro":
       content.appendChild(Signup());
-      loginGoogle();
+      googleAuth();
       signUpData();
       break;
-    case "http://localhost:5000/#iniciosesion":
-      description.style.display = "none";
+    case "#iniciosesion":
       content.appendChild(Signin());
-      loginGoogle();
+      googleAuth();
       signInData();
       break;
-    case "http://localhost:5000/#posts":
+    case "#posts":
       content.appendChild(Posts());
       break;
+    case "":
+      content.appendChild(home());
+      break;
+    default:
+      console.log("Error 404");
   }
 }
 
