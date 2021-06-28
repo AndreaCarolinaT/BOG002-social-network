@@ -1,8 +1,11 @@
-/* export const createPost = (content) => {
-    db.collection('publicaciones').doc().set({ content });
+/* export const createPost = (title, description) => {
+    db.collection("posts").doc().set({ 
+        title,
+        description,
+    });
   };
   
-  db.collection('publicaciones')
+  db.collection("posts")
     .get()
     .then((data) => {
       data.forEach((post) => {

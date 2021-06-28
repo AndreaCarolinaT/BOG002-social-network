@@ -14,6 +14,7 @@ export function Signin() {
         <a href="http://localhost:5000/#posts"><button id="signInBtn" type="submit"></a>Ingresar</button><br>
   
         <div class="question">  
+        <a href="http://localhost:5000/#registro">¿Aún no tienes una cuenta? Regístrate aquí</a>
           <h3>o</h3>
           <button type="button" class="googleLogin" id="googleLogin"><img
             src="img/GoogleIcon.png"> Ingresa con Google</button>

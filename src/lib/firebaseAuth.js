@@ -4,7 +4,7 @@ export function signUpSave(email, password) {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userInfo) => {
-      window.location.hash = "#posts";
+      window.location.hash = "#timeline";
       window.alert("¡Registro exitoso! Bienvenido a PetSpace", userInfo.user);
     })
     .catch((error) => {
@@ -18,7 +18,7 @@ export function signInSave(email, password) {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((userInfo) => {
-      window.location.hash = "#posts";
+      window.location.hash = "#timeline";
       window.alert("¡Bienvenido a PetSpace!", userInfo.user);
     })
     .catch((error) => {
@@ -33,7 +33,7 @@ export function googleAuth() {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider)
       .then((result) => {
-        window.location.hash = "#posts";
+        window.location.hash = "#timeline";
         window.alert("¡Bienvenido a PetSpace!", result.user);
       })
       .catch((error) => {
@@ -46,11 +46,20 @@ export function googleAuth() {
 export function verifyUser() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      window.location.hash = "#posts";
+      window.location.hash = "#timeline";
     } else {
-      window.location.hash = "#iniciosesion";
+      window.location.hash = "";
     }
   })
+}
+
+//Cerrar sesión
+export function logOut() {
+  firebase.auth().signOut().then(() => {
+    window.location.hash = "";
+  }).catch((error) => {
+    alert("Ocurrió un error, intentelo de nuevo", error);
+  });
 }
 
 
