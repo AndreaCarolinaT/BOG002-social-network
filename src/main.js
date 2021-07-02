@@ -1,6 +1,6 @@
 import { router } from "./lib/router.js";
-import { signUpSave, signInSave } from "./lib/firebaseAuth.js";
-/* import { createPost } from "./lib/firestore.js"; */
+import { signUpSave, signInSave, logOut } from "./lib/firebaseAuth.js";
+import { savePost } from "./lib/firestore.js";
 
 window.addEventListener("DOMContentLoaded", () => {
     router(window.location.hash);
@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 //activar cambio de hash al cambiar de vistas
 window.addEventListener("hashchange", () => {
-    console.log(window.location.hash) 
+    console.log(window.location.hash)
     router(window.location.hash);
 });
 
@@ -31,10 +31,30 @@ export function signInData() {
         const emailSignIn = document.getElementById("emailSignIn").value;
         const passwordSignIn = document.getElementById("passwordSignIn").value;
         e.preventDefault();
-        /* createPost(); */
         signInSave(emailSignIn, passwordSignIn);
         console.log(emailSignIn, passwordSignIn)
     });
+}
+
+//Obtener valores del formulario de posts
+export function createPost() {
+    const callPostForm = document.getElementById("postForm");
+    callPostForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const title = callPostForm["postTitle"];
+        const description = callPostForm["postDescription"];
+        
+        await savePost(title.value, description.value);
+        callPostForm.reset();
+        title.focus();
+        console.log(title, description);
+    });
+}
+
+export function logOutDom() {
+ const logOut = document.getElementById("btnLgt");
+  logoutB.addEventListener("click", logOut);
+  logoutB.appendChild(textLogout);
 }
 
 

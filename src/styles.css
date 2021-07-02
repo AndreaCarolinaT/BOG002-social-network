@@ -65,7 +65,7 @@ body {
     border-radius: 15px;
 }
 
-.signUpForm, .signInForm {
+.signUpForm, .signInForm, .cardNewPost {
     background-color: rgb(55, 221, 243);
     max-width: 250px;
     margin-top: 20%;
@@ -120,4 +120,13 @@ button {
     border-radius: 5px;
     background-color: rgb(21, 174, 185);
     border: rgba(0, 0, 0, 0.2);
+}
+
+.logoutBtn {
+    margin: 0 auto;
+}
+
+.postDescription {
+    border-radius: 15px;
+    outline: none;
 }
