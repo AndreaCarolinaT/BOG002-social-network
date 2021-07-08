@@ -1,6 +1,6 @@
 import { router } from "./lib/router.js";
-import { signUpSave, signInSave } from "./lib/firebaseAuth.js";
-/* import { createPost } from "./lib/firestore.js"; */
+import { signUpSave, signInSave, logOut } from "./lib/firebaseAuth.js";
+import { savePost } from "./lib/firestore.js";
 
 window.addEventListener("DOMContentLoaded", () => {
     router(window.location.hash);
@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 //activar cambio de hash al cambiar de vistas
 window.addEventListener("hashchange", () => {
-    console.log(window.location.hash) 
+    console.log(window.location.hash)
     router(window.location.hash);
 });
 
@@ -31,9 +31,31 @@ export function signInData() {
         const emailSignIn = document.getElementById("emailSignIn").value;
         const passwordSignIn = document.getElementById("passwordSignIn").value;
         e.preventDefault();
-        /* createPost(); */
         signInSave(emailSignIn, passwordSignIn);
         console.log(emailSignIn, passwordSignIn)
+    });
+}
+
+//Obtener valores del formulario de posts
+export function createPost() {
+    const callPostForm = document.getElementById("postForm");
+    callPostForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const title = document.getElementById("postTitle");
+        const description = document.getElementById("postDescription");
+        await savePost(title.value, description.value);
+        callPostForm.reset();
+        title.focus();
+        console.log(title, description);
+    });
+}
+
+//Listener de boton cerrar sesión
+export function logOutDom() {
+    const logOut_ = document.getElementById("btnLgt");
+    console.log("boton logout", logOut_)
+    logOut_.addEventListener("click", async () => {
+        await logOut();
     });
 }
 

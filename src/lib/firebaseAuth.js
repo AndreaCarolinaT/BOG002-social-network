@@ -42,16 +42,16 @@ export function googleAuth() {
   })
 }
 
-//Observador de estado de autenticación del usuario
+ //Observador de estado de autenticación del usuario
 export function verifyUser() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      window.location.hash = "#timeline";
+      window.location.assign("#timeline");
     } else {
-      window.location.hash = "";
+      window.location.assign("");
     }
   })
-}
+} 
 
 //Cerrar sesión
 export function logOut() {
