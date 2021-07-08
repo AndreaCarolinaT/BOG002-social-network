@@ -41,9 +41,8 @@ export function createPost() {
     const callPostForm = document.getElementById("postForm");
     callPostForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const title = callPostForm["postTitle"];
-        const description = callPostForm["postDescription"];
-        
+        const title = document.getElementById("postTitle");
+        const description = document.getElementById("postDescription");
         await savePost(title.value, description.value);
         callPostForm.reset();
         title.focus();
@@ -51,10 +50,13 @@ export function createPost() {
     });
 }
 
+//Listener de boton cerrar sesión
 export function logOutDom() {
- const logOut = document.getElementById("btnLgt");
-  logoutB.addEventListener("click", logOut);
-  logoutB.appendChild(textLogout);
+    const logOut_ = document.getElementById("btnLgt");
+    console.log("boton logout", logOut_)
+    logOut_.addEventListener("click", async () => {
+        await logOut();
+    });
 }
 
 
