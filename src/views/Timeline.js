@@ -1,5 +1,4 @@
 import { getPosts } from "../lib/firestore.js";
-import { logOutDom } from "../main.js";
 
 export function showTimeline() {
   const container = document.createElement("div");
@@ -15,12 +14,11 @@ export function showTimeline() {
 <div id="timelinePosts" class="timelinePosts">
 </div>`;
 
-getPosts();
-//logOutDom();
-  return container; 
+  getPosts();
+  return container;
 
 }
 
 
 
-  
+

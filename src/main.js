@@ -1,6 +1,6 @@
 import { router } from "./lib/router.js";
 import { signUpSave, signInSave, logOut } from "./lib/firebaseAuth.js";
-import { savePost } from "./lib/firestore.js";
+import { getPosts, savePost } from "./lib/firestore.js";
 
 window.addEventListener("DOMContentLoaded", () => {
     router(window.location.hash);
@@ -44,20 +44,21 @@ export function createPost() {
         const title = document.getElementById("postTitle");
         const description = document.getElementById("postDescription");
         await savePost(title.value, description.value);
+        getPosts();
         callPostForm.reset();
         title.focus();
-        console.log(title, description);
     });
 }
 
 //Listener de boton cerrar sesión
 export function logOutDom() {
     const logOut_ = document.getElementById("btnLgt");
-    console.log("boton logout", logOut_)
     logOut_.addEventListener("click", async () => {
         await logOut();
     });
 }
+
+
 
 
 

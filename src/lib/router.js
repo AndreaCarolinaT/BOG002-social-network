@@ -1,12 +1,9 @@
-import { googleAuth, logOut} from "../lib/firebaseAuth.js"
+import { googleAuth } from "../lib/firebaseAuth.js"
 import { Signup } from "../views/Signup.js"
 import { Signin } from "../views/Signin.js"
 import { showTimeline } from "../views/Timeline.js"
 import { signUpData, signInData, createPost, logOutDom } from "../main.js";
 import { home } from "../views/home.js";
-import { getPosts } from "./firestore.js";
-/* import { savePost } from "./firestore.js"; */
-
 
 //Estructura del router
 export const router = (route) => {
@@ -22,7 +19,6 @@ export const router = (route) => {
         content.appendChild(showTimeline());
         logOutDom();
         createPost();
-        getPosts();
         break;
       default:
         console.log("Error 404", user);

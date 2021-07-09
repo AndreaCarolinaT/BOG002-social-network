@@ -42,7 +42,7 @@ export function googleAuth() {
   })
 }
 
- //Observador de estado de autenticación del usuario
+//Observador de estado de autenticación del usuario
 export function verifyUser() {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -51,7 +51,7 @@ export function verifyUser() {
       window.location.assign("");
     }
   })
-} 
+}
 
 //Cerrar sesión
 export function logOut() {
