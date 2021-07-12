@@ -65,7 +65,7 @@ body {
     border-radius: 15px;
 }
 
-.signUpForm, .signInForm, .cardNewPost {
+.signUpForm, .signInForm, .postForm {
     background-color: rgb(55, 221, 243);
     max-width: 250px;
     margin-top: 20%;
@@ -129,4 +129,20 @@ button {
 .postDescription {
     border-radius: 15px;
     outline: none;
+}
+
+.timelinePosts {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contentPosts {
+    text-align: center;
+    background: #f5faf8;
+    box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
+    margin-bottom: 5%;
+    width: 100%;
+    border-radius: 15px;
 }
