@@ -42,24 +42,12 @@ export function googleAuth() {
   })
 }
 
-//Observador de estado de autenticación del usuario
-export function verifyUser() {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      window.location.assign("#timeline");
-    } else {
-      window.location.assign("");
-    }
-  })
-}
-
 //Cerrar sesión
 export function logOut() {
-  firebase.auth().signOut().then(() => {
-    window.location.hash = "";
-  }).catch((error) => {
-    alert("Ocurrió un error, intentelo de nuevo", error);
-  });
+  firebase.auth().signOut()
+    .then(() => {
+      window.location.hash = "";
+    }).catch((error) => {
+      alert("Ocurrió un error, intentelo de nuevo", error);
+    });
 }
-
-

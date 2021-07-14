@@ -1,7 +1,8 @@
 import { router } from "./lib/router.js";
 import { signUpSave, signInSave, logOut } from "./lib/firebaseAuth.js";
-import { getPosts, savePost } from "./lib/firestore.js";
+import { deletePosts, getPosts, savePost } from "./lib/firestore.js";
 
+//Cargar contenido y cambio de hash
 window.addEventListener("DOMContentLoaded", () => {
     router(window.location.hash);
 })
@@ -58,38 +59,12 @@ export function logOutDom() {
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Listener para ìconos de borrar posts
+export function deletePostDom() {
+    const deleteI = document.querySelectorAll(".deleteIcon");
+    deleteI.forEach(icon => {
+        icon.addEventListener("click", async (e) => {
+            await deletePosts(icon.id);
+        });
+    });
+}
