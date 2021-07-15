@@ -10,14 +10,22 @@ export function showTimeline() {
   <textarea id="postDescription" placeholder="Escribe tu publicación" class="postDescription" required autofocus></textarea>
   <button type="submit" class="publishBtn" id="publishBtn">Publicar</button>
   </form>
-  
-<div id="timelinePosts" class="timelinePosts">
-</div>`;
-//Se obtienen los posts
+
+  <div class="overlay" id="overlay">
+  </div>
+
+  <div class="editModal" id="editModal">
+  <form id="editForm" class="editForm">
+    <input type="text" id="editTitle">
+    <textarea id="editDescription"></textarea>
+    <button type="submit" class="editBtn" id="editBtn">Editar</button>
+    <button class="cancelBtn" id="cancelBtn">Cancelar</button>
+  </form>
+  </div>
+
+  <div id="timelinePosts" class="timelinePosts">
+  </div>`;
+  //Se obtienen los posts
   getPosts()
   return container;
 }
-
-
-
-

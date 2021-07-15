@@ -1,4 +1,4 @@
-import { deletePostDom } from "../main.js";
+import { deletePostDom, editPostsDom } from "../main.js";
 
 //Función principal para  guardar los posts
 export const savePost = (title, description) => {
@@ -6,9 +6,10 @@ export const savePost = (title, description) => {
     title,
     description
   });
-}
+};
 
 //Función para obtener los posts y pintarlos
+//Se agrega onSnapshot para escuchar cambios realizados
 export function getPosts() {
   db.collection("posts").onSnapshot((doc) => {
     const postCard = document.getElementById("timelinePosts");
@@ -19,21 +20,22 @@ export function getPosts() {
       postCard.innerHTML += `<div class="contentPosts">
       <h3>${postInfo.title}</h3>
       <p>${postInfo.description}</p>
-      <div id="${postInfo.id}"><img src="img/delete.png" class="deleteIcon" id="${postInfo.id}"></div>
-      <div><img src="img/edit.png" class="editIcon"></div>
+      <div class="icons">
+      <img src="img/delete.png" class="deleteIcon" id="${postInfo.id}">
+      <img src="img/edit.png" class="editIcon" id="${postInfo.id}">
+      </div>
       </div>`
     });
-    //Se implementa función para borrar posts
+    //Se llaman funciones para borrar y editar posts
     deletePostDom();
+    editPostsDom();
   })
-}
+};
 
 //Función principal para borrar posts
-export const deletePosts = id => db.collection("posts").doc(id).delete();
+export const deletePosts = (id) => db.collection("posts").doc(id).delete();
 
+//Función principal para editar posts posts
+export const editPosts = (id) => db.collection("posts").doc(id).get();
 
-
-
-
-
-
+//Función para guardar los posts editados
