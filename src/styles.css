@@ -65,7 +65,7 @@ body {
     border-radius: 15px;
 }
 
-.signUpForm, .signInForm, .postForm {
+.signUpForm, .signInForm {
     background-color: rgb(55, 221, 243);
     max-width: 250px;
     margin-top: 20%;
@@ -122,11 +122,12 @@ button {
     border: rgba(0, 0, 0, 0.2);
 }
 
-.logoutBtn {
-    margin: 0 auto;
+#btnLgt {
+    position: initial;
 }
 
 .postDescription {
+    width: 100%;
     border-radius: 15px;
     outline: none;
 }
@@ -142,9 +143,10 @@ button {
     text-align: center;
     background: #f5faf8;
     box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
-    margin-bottom: 5%;
+    margin-top: 2%;
     width: 100%;
     border-radius: 15px;
+    border-style:groove;
 }
 
 .overlay {
@@ -157,15 +159,30 @@ button {
     display: none
 }
 
+.postForm {
+    background-color: rgb(55, 221, 243);
+    max-width: 250px;
+    margin-top: 0%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    padding: 15px;
+    border-color:rgb(25, 133, 141);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);   
+}
+
 .editModal {
     background-color: rgb(55, 221, 243);
     max-width: 250px;
-    margin-left: 0 auto;
-    margin-right: 0 auto;
+    margin: 0 auto;
     border-radius: 15px;
     padding: 15px;
     border-color:rgb(25, 133, 141);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);
-    position: absolute;
+    position: relative;
     display: none;
+}
+
+.icons {
+    text-align: right;
 }

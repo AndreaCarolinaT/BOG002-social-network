@@ -42,7 +42,7 @@ export const router = (route) => {
         content.appendChild(home());
         break;
       default:
-        content.appendChild(Signin())
+        content.appendChild(home())
     }
   }
 }

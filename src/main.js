@@ -1,6 +1,6 @@
 import { router } from "./lib/router.js";
 import { signUpSave, signInSave, logOut } from "./lib/firebaseAuth.js";
-import { deletePosts, editPosts, getPosts, savePost } from "./lib/firestore.js";
+import { deletePosts, editPosts, getPosts, savePost, updateEdit } from "./lib/firestore.js";
 
 //Cargar contenido y cambio de hash
 window.addEventListener("DOMContentLoaded", () => {
@@ -78,28 +78,45 @@ export function editPostsDom() {
     const editBtn = document.querySelector("#editBtn");
     const postT = document.querySelector("#editTitle");
     const postD = document.querySelector("#editDescription");
+    let doc = "";
 
+    //Listener para cada icono de editar
     editI.forEach(icon => {
-        icon.addEventListener("click", async (e) => {
-            const doc = await editPosts(icon.id);
+        icon.addEventListener("click", async () => {
+            doc = await editPosts(icon.id);
             const data = doc.data();
-            overlay.style.display = "block";
-            editModal.style.display = "block";
             postT.value = data.title;
             postD.value = data.description;
+            editBtn.value = icon.id;
+            overlay.style.display = "block";
+            editModal.style.display = "block";
         });
     });
 
+    //Listener para el boton de cancelar edición
     cancel.addEventListener("click", (e) => {
         e.preventDefault();
         editModal.style.display = "none";
         overlay.style.display = "none";
     });
+
+    //Listener para el botón que guarda la edición
     editBtn.addEventListener("click", (e) => {
+        console.log(editBtn.value)
         e.preventDefault();
-        savePost(postT.value, postD.value);
-        getPosts();
-        editModal.style.display = "none";
-        overlay.style.display = "none";
+        return updateEdit(editBtn.value, {
+            title: postT.value,
+            description: postD.value
+        })
+            .then(() => {
+                console.log("Document successfully update!");
+                window.alert("¡Tus cambios se han guardado exitosamente!");
+                getPosts();
+                editModal.style.display = "none";
+                overlay.style.display = "none";
+            }).catch((error) => {
+                console.error("Error update document: ", error);
+                window.alert("Ocurrió un error, vuelve a intentarlo");
+            });
     });
 };

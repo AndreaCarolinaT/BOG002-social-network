@@ -38,4 +38,5 @@ export const deletePosts = (id) => db.collection("posts").doc(id).delete();
 //Función principal para editar posts posts
 export const editPosts = (id) => db.collection("posts").doc(id).get();
 
-//Función para guardar los posts editados
+//Función para actualizar los posts editados
+export const updateEdit = (id, newContent) => db.collection("posts").doc(id).update(newContent);
