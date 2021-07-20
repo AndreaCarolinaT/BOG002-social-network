@@ -51,3 +51,7 @@ export function logOut() {
       alert("Ocurrió un error, intentelo de nuevo", error);
     });
 }
+
+export function getCurrentUser () {
+  return firebase.auth().currentUser
+}

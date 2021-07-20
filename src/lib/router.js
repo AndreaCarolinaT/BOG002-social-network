@@ -1,4 +1,4 @@
-import { googleAuth } from "../lib/firebaseAuth.js"
+import { getCurrentUser, googleAuth } from "../lib/firebaseAuth.js"
 import { Signup } from "../views/Signup.js"
 import { Signin } from "../views/Signin.js"
 import { showTimeline } from "../views/Timeline.js"
@@ -8,14 +8,14 @@ import { home } from "../views/home.js";
 //Estructura del router
 export const router = (route) => {
   //Observador de autenticación
-  const user = firebase.auth().currentUser;
+  const user = getCurrentUser();
+  console.log(user)
   //Se carga contenido en root dependiendo del hash
   const content = document.getElementById('root');
   content.innerHTML = "";
 
   //Si hay un usuario logueado se muestra el timeline
   if (user) {
-    console.log(route)
     switch (route) {
       case "#timeline":
         content.appendChild(showTimeline());
@@ -23,7 +23,7 @@ export const router = (route) => {
         createPost();
         break;
       default:
-        console.log("Error 404", user);
+        console.log("Error 404", user); 
     }
     //Si no, se muestran las vistas principales
   } else {

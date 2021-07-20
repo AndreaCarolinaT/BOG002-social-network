@@ -1,11 +1,14 @@
 import { deletePostDom, editPostsDom } from "../main.js";
+import { getCurrentUser } from "./firebaseAuth.js";
 
 //Función principal para  guardar los posts
 export const savePost = (title, description) => {
   db.collection("posts").doc().set({
     title,
-    description
-  });
+    description,
+    likes: [],
+    userid: getCurrentUser().uid
+  }); 
 };
 
 //Función para obtener los posts y pintarlos
@@ -40,3 +43,8 @@ export const editPosts = (id) => db.collection("posts").doc(id).get();
 
 //Función para actualizar los posts editados
 export const updateEdit = (id, newContent) => db.collection("posts").doc(id).update(newContent);
+
+//Función que actualiza la cantidad de likes
+/* export const updateLikes = (id) => db.collection("posts").doc(id).update({
+  likes:[]
+}); */

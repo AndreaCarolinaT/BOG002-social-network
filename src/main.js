@@ -120,3 +120,13 @@ export function editPostsDom() {
             });
     });
 };
+
+//Listener para los likes
+/* export const likes = () => {
+    let contador = 0;
+    const btnLike = document.querySelector('#btnLike');
+    btnLike.addEventListener('click', () => {
+        console.log(btnLike);
+        contador++;
+}
+likes(); */
