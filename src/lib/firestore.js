@@ -1,4 +1,5 @@
 import { deletePostDom, editPostsDom } from "../main.js";
+import { renderPosts } from "../views/Posts.js";
 import { getCurrentUser } from "./firebaseAuth.js";
 
 //Función principal para  guardar los posts
@@ -8,7 +9,7 @@ export const savePost = (title, description) => {
     description,
     likes: [],
     userid: getCurrentUser().uid
-  }); 
+  });
 };
 
 //Función para obtener los posts y pintarlos
@@ -19,20 +20,12 @@ export function getPosts() {
     postCard.innerHTML = ""
     doc.forEach(post => {
       const postInfo = post.data()
-      postInfo.id = post.id;
-      postCard.innerHTML += `<div class="contentPosts">
-      <h3>${postInfo.title}</h3>
-      <p>${postInfo.description}</p>
-      <div class="icons">
-      <img src="img/delete.png" class="deleteIcon" id="${postInfo.id}">
-      <img src="img/edit.png" class="editIcon" id="${postInfo.id}">
-      </div>
-      </div>`
-    });
-    //Se llaman funciones para borrar y editar posts
+      renderPosts(postInfo, post)
+    })//Se llaman funciones para borrar y editar posts
     deletePostDom();
     editPostsDom();
   })
+
 };
 
 //Función principal para borrar posts
@@ -45,6 +38,6 @@ export const editPosts = (id) => db.collection("posts").doc(id).get();
 export const updateEdit = (id, newContent) => db.collection("posts").doc(id).update(newContent);
 
 //Función que actualiza la cantidad de likes
-/* export const updateLikes = (id) => db.collection("posts").doc(id).update({
-  likes:[]
-}); */
+export const updateLikes = (id, likes) => db.collection("posts").doc(id).update({
+  likes
+});

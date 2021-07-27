@@ -1,6 +1,6 @@
 import { router } from "./lib/router.js";
-import { signUpSave, signInSave, logOut } from "./lib/firebaseAuth.js";
-import { deletePosts, editPosts, getPosts, savePost, updateEdit } from "./lib/firestore.js";
+import { signUpSave, signInSave, logOut, getCurrentUser } from "./lib/firebaseAuth.js";
+import { deletePosts, editPosts, getPosts, savePost, updateEdit, updateLikes } from "./lib/firestore.js";
 
 //Cargar contenido y cambio de hash
 window.addEventListener("DOMContentLoaded", () => {
@@ -84,6 +84,7 @@ export function editPostsDom() {
     editI.forEach(icon => {
         icon.addEventListener("click", async () => {
             doc = await editPosts(icon.id);
+            console.log(doc)
             const data = doc.data();
             postT.value = data.title;
             postD.value = data.description;
@@ -102,7 +103,6 @@ export function editPostsDom() {
 
     //Listener para el botón que guarda la edición
     editBtn.addEventListener("click", (e) => {
-        console.log(editBtn.value)
         e.preventDefault();
         return updateEdit(editBtn.value, {
             title: postT.value,
@@ -121,12 +121,21 @@ export function editPostsDom() {
     });
 };
 
-//Listener para los likes
-/* export const likes = () => {
-    let contador = 0;
-    const btnLike = document.querySelector('#btnLike');
-    btnLike.addEventListener('click', () => {
-        console.log(btnLike);
-        contador++;
+export const likesDom = (postInfo) => {
+    setTimeout(() => {
+        const btnLike = document.querySelector(`.btnLike[data-id="${postInfo.id}"]`);
+        btnLike.addEventListener("click", (e) => {
+            if (postInfo.likes && postInfo.likes.some(likes =>//some= para validar si algo existe dentro de un array
+                likes === getCurrentUser().uid)) return;
+            let counter = document.querySelector(`#likePost${e.target.dataset.id}`).innerHTML
+            let prevLikes = [];
+            if (Array.isArray(postInfo.likes)) {//recibe una variable y devuelve true o false. Si es un array true, sino false 
+                prevLikes = postInfo.likes
+            }
+            counter++;
+            document.querySelector(`#likePost${e.target.dataset.id}`).innerHTML = counter;
+            updateLikes(e.target.dataset.id, [...prevLikes, getCurrentUser().uid]);//desarmamos el like que esta en base de datos y se agrega el nuevo
+        })
+    }, 300);
 }
-likes(); */
+
