@@ -1,25 +1,28 @@
 //Registro de usuario nuevo
 export function signUpSave(email, password) {
-  firebase
+  return firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userInfo) => {
       window.location.hash = "#timeline";
       window.alert("¡Registro exitoso! Bienvenido a PetSpace", userInfo.user);
+      return userInfo
     })
     .catch((error) => {
       window.alert("Correo o contraseña no válidos, verifica tus datos", error.message);
+      return error
     });
 };
 
 //Inicio de sesión
 export function signInSave(email, password) {
-  firebase
+  return firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((userInfo) => {
       window.location.hash = "#timeline";
       window.alert("¡Bienvenido a PetSpace!", userInfo.user);
+      return userInfo
     })
     .catch((error) => {
       window.alert("Verifica tus datos", error.message);
@@ -42,24 +45,17 @@ export function googleAuth() {
   })
 }
 
- //Observador de estado de autenticación del usuario
-export function verifyUser() {
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      window.location.assign("#timeline");
-    } else {
-      window.location.assign("");
-    }
-  })
-} 
-
 //Cerrar sesión
 export function logOut() {
-  firebase.auth().signOut().then(() => {
-    window.location.hash = "";
-  }).catch((error) => {
-    alert("Ocurrió un error, intentelo de nuevo", error);
-  });
+  firebase.auth().signOut()
+    .then(() => {
+      window.location.hash = "";
+    }).catch((error) => {
+      alert("Ocurrió un error, intentelo de nuevo", error);
+    });
 }
 
-
+//Usuario actual
+export function getCurrentUser () {
+  return firebase.auth().currentUser
+}

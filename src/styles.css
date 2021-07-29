@@ -121,3 +121,68 @@ button {
     background-color: rgb(21, 174, 185);
     border: rgba(0, 0, 0, 0.2);
 }
+
+#btnLgt {
+    position: initial;
+}
+
+.postDescription {
+    width: 100%;
+    border-radius: 15px;
+    outline: none;
+}
+
+.timelinePosts {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contentPosts {
+    text-align: center;
+    background: #f5faf8;
+    box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
+    margin-top: 2%;
+    width: 100%;
+    border-radius: 15px;
+    border-style:groove;
+}
+
+.overlay {
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none
+}
+
+.postForm {
+    background-color: rgb(55, 221, 243);
+    max-width: 250px;
+    margin-top: 0%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    padding: 15px;
+    border-color:rgb(25, 133, 141);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);   
+}
+
+.editModal {
+    background-color: rgb(55, 221, 243);
+    max-width: 250px;
+    margin: 0 auto;
+    border-radius: 15px;
+    padding: 15px;
+    border-color:rgb(25, 133, 141);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);
+    position: relative;
+    display: none;
+}
+
+.icons {
+    text-align: right;
+}

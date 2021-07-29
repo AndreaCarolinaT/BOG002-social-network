@@ -11,7 +11,7 @@ export function Signin() {
         <label for="password">Contraseña</label>
         <input id="passwordSignIn" type="password" placeholder="Crear contraseña" minlength="8" required><br>
   
-        <a href="http://localhost:5000/#posts"><button id="signInBtn" type="submit"></a>Ingresar</button><br>
+        <a href="http://localhost:5000/#timeline"><button id="signInBtn" type="submit"></a>Ingresar</button><br>
   
         <div class="question">  
         <a href="http://localhost:5000/#registro">¿Aún no tienes una cuenta? Regístrate aquí</a>
