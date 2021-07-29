@@ -20,8 +20,13 @@ export function signUpData() {
         const emailSignUp = document.getElementById("emailSignUp").value;
         const passwordSignUp = document.getElementById("passwordSignUp").value;
         e.preventDefault();
-        signUpSave(emailSignUp, passwordSignUp)
-        console.log(emailSignUp, passwordSignUp)
+        if (!emailSignUp || !passwordSignUp) {
+            alert("Completa los campos");
+        }
+        else {
+            signUpSave(emailSignUp, passwordSignUp)
+            console.log(emailSignUp, passwordSignUp)
+        }
     });
 };
 
