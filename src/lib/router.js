@@ -4,6 +4,8 @@ import { Signin } from "../views/Signin.js"
 import { showTimeline } from "../views/Timeline.js"
 import { signUpData, signInData, createPost, logOutDom } from "../main.js";
 import { home } from "../views/home.js";
+import { getPosts } from "./firestore.js";
+/* import { savePost } from "./firestore.js"; */
 
 //Estructura del router
 export const router = (route) => {
@@ -16,6 +18,7 @@ export const router = (route) => {
 
   //Si hay un usuario logueado se muestra el timeline
   if (user) {
+    console.log(route)
     switch (route) {
       case "#timeline":
         content.appendChild(showTimeline());
